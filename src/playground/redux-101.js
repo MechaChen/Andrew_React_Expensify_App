@@ -1,12 +1,17 @@
 import { createStore } from "redux";
 
 const store = createStore((state = { count: 0 }, action) => {
-  if (action.type === "INCREMENT") {
-    return {
-      count: state.count + 2
-    };
-  } else {
-    return state;
+  switch (action.type) {
+    case "INCREMENT":
+      return {
+        count: state.count + 2
+      };
+    case "DECREMENT":
+      return {
+        count: state.count - 2
+      };
+    default:
+      return state;
   }
 });
 
@@ -19,8 +24,17 @@ console.log(store.getState());
 store.dispatch({
   type: "INCREMENT"
 });
+console.log(store.getState());
+
+store.dispatch({
+  type: "DECREMENT"
+});
+console.log(store.getState());
+
+store.dispatch({
+  type: "DECREMENT"
+});
+console.log(store.getState());
 
 // I'd like to increment the count
 // I'd like to reset the count to zero
-
-console.log(store.getState());
