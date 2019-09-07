@@ -7,10 +7,6 @@ import EditExpensePage from "../components/EditExpensePage";
 import HelpPage from "../components/HelpPage";
 import NotFoundPage from "../components/NotFoundPage";
 
-// Create 6 new files for the 6 components
-// setup imports, component, default export
-// import into AppRouter so they can be used
-
 const AppRouter = () => (
   <BrowserRouter>
     <div>
@@ -18,7 +14,7 @@ const AppRouter = () => (
       <Switch>
         <Route path="/" component={ExpenseDashboardPage} exact={true} />
         <Route path="/create" component={AddExpensePage} />
-        <Route path="/edit" component={EditExpensePage} />
+        <Route path="/edit/:id" component={EditExpensePage} />
         <Route path="/help" component={HelpPage} />
         <Route component={NotFoundPage} />
       </Switch>
