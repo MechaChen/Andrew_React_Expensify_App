@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 import "reset.css/reset.css";
 import "./styles/style.scss";
 
@@ -14,21 +14,31 @@ const EditExpensePage = () => <div>This is from my edit expense component</div>;
 
 const HelpPage = () => <div>This is from my help component</div>;
 
-const NotFoundPage = () => <div>404!</div>;
+const NotFoundPage = () => (
+  <div>
+    404 - <Link to="/">Go Home</Link>
+  </div>
+);
 
-// /edit EditExpensePage
-// /help HelpPage
+const Header = () => (
+  <header>
+    <h1>Expensify</h1>
+  </header>
+);
 
 const routes = (
   <BrowserRouter>
-    {/* Switch will find the 1st match route */}
-    <Switch>
-      <Route path="/" component={ExpenseDashboardPage} exact={true} />
-      <Route path="/create" component={AddExpensePage} />
-      <Route path="/edit" component={EditExpensePage} />
-      <Route path="/help" component={HelpPage} />
-      <Route component={NotFoundPage} />
-    </Switch>
+    <div>
+      <Header />
+      {/* Switch will find the 1st match route */}
+      <Switch>
+        <Route path="/" component={ExpenseDashboardPage} exact={true} />
+        <Route path="/create" component={AddExpensePage} />
+        <Route path="/edit" component={EditExpensePage} />
+        <Route path="/help" component={HelpPage} />
+        <Route component={NotFoundPage} />
+      </Switch>
+    </div>
   </BrowserRouter>
 );
 
