@@ -10,6 +10,10 @@ const store = createStore((state = { count: 0 }, action) => {
       return {
         count: state.count - 2
       };
+    case "RESET":
+      return {
+        count: 0
+      };
     default:
       return state;
   }
@@ -24,17 +28,21 @@ console.log(store.getState());
 store.dispatch({
   type: "INCREMENT"
 });
-console.log(store.getState());
+
+store.dispatch({
+  type: "INCREMENT"
+});
+
+// RESET - set the count equal to zero
+store.dispatch({
+  type: "RESET"
+});
 
 store.dispatch({
   type: "DECREMENT"
 });
-console.log(store.getState());
-
-store.dispatch({
-  type: "DECREMENT"
-});
-console.log(store.getState());
 
 // I'd like to increment the count
 // I'd like to reset the count to zero
+
+console.log(store.getState());
