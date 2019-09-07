@@ -5,9 +5,16 @@ import { createStore } from "redux";
 //    1. avoid typo
 //    2. prevent duplicate code
 
-const incrementCount = (payload = {}) => ({
+// if argument not an object, default wil be an empty object
+// if argument is an object but not including incrementBy, default will give an property incrementBy and set it to 1
+const incrementCount = ({ incrementBy = 1 } = {}) => ({
   type: "INCREMENT",
-  incrementBy: typeof payload.incrementBy === "number" ? payload.incrementBy : 1
+  incrementBy
+});
+
+const decrementCount = ({ decrementBy = 1 } = {}) => ({
+  type: "DECREMENT",
+  decrementBy
 });
 
 const store = createStore((state = { count: 0 }, action) => {
@@ -17,10 +24,8 @@ const store = createStore((state = { count: 0 }, action) => {
         count: state.count + action.incrementBy
       };
     case "DECREMENT":
-      const decrementBy =
-        typeof action.decrementBy === "number" ? action.decrementBy : 1;
       return {
-        count: state.count - decrementBy
+        count: state.count - action.decrementBy
       };
     case "SET":
       return {
@@ -45,7 +50,7 @@ const unsubscribe = store.subscribe(() => {
 //   incrementBy: 5
 // });
 
-store.dispatch(incrementCount(5));
+store.dispatch(incrementCount({ incrementBy: 5 }));
 
 // store.dispatch({
 //   type: "INCREMENT"
@@ -57,14 +62,16 @@ store.dispatch({
   type: "RESET"
 });
 
-store.dispatch({
-  type: "DECREMENT",
-  decrementBy: 10
-});
+// store.dispatch({
+//     type: "DECREMENT"
+// });
+store.dispatch(decrementCount());
 
-store.dispatch({
-  type: "DECREMENT"
-});
+// store.dispatch({
+//   type: "DECREMENT",
+//   decrementBy: 10
+// });
+store.dispatch(decrementCount({ decrementBy: 10 }));
 
 store.dispatch({
   type: "SET",
