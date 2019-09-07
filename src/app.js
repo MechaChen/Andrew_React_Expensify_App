@@ -20,9 +20,18 @@ const NotFoundPage = () => (
   </div>
 );
 
+// link to home page
+// link to the create expense page
+// link to the edit page
+// link to the help page
+
 const Header = () => (
   <header>
     <h1>Expensify</h1>
+    <Link to="/">Dashboard</Link>
+    <Link to="/create">Create Expense</Link>
+    <Link to="/edit">Edit Expense</Link>
+    <Link to="/help">Help</Link>
   </header>
 );
 
