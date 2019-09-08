@@ -22,9 +22,16 @@ const addExpense = ({
   };
 };
 // EDIT_EXPENSE
+const editExpense = (id, updates) => {
+  return {
+    type: "EDIT_EXPENSE",
+    id,
+    updates
+  };
+};
 
 // REMOVE_EXPENSE
-const removeExpense = ({ id }) => {
+const removeExpense = id => {
   return {
     type: "REMOVE_EXPENSE",
     id
@@ -45,6 +52,14 @@ const expenseReducer = (state = expenseReducerDefaultState, action) => {
   switch (action.type) {
     case "ADD_EXPENSE":
       return [...state, action.expense];
+    case "EDIT_EXPENSE":
+      return state.map(expense => {
+        if (expense.id === action.id) {
+          return { ...expense, ...action.updates };
+        } else {
+          return expense;
+        }
+      });
     case "REMOVE_EXPENSE":
       return state.filter(({ id }) => id !== action.id);
     default:
@@ -89,7 +104,8 @@ const expenseTwo = store.dispatch(
 
 console.log(expenseOne);
 
-store.dispatch(removeExpense({ id: expenseOne.expense.id }));
+store.dispatch(removeExpense(expenseOne.expense.id));
+store.dispatch(editExpense(expenseTwo.expense.id, { amount: 500 }));
 
 const demoState = {
   expenses: [
@@ -108,3 +124,10 @@ const demoState = {
     endDate: undefined
   }
 };
+
+// const user = { name: "Jen", age: 24 };
+// console.log({ ...user, location: "Philadelphia", age: 27 });
+// // {name: "Jen", age: 27, location: "Philadelphia"}
+
+// console.log({ age: 27, ...user, location: "Philadelphia" });
+// {name: "Jen", age: 24, location: "Philadelphia"}
