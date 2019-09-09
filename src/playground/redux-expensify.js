@@ -148,7 +148,12 @@ const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
     .sort((a, b) => {
       if (sortBy === "date") {
         return a.createdAt < b.createdAt ? 1 : -1;
+      } else if (sortBy === "amount") {
+        return a.amount < b.amount ? 1 : -1;
       }
+
+      // sortBy -> amount
+      // put the ones with a greater amount first
     });
 };
 
