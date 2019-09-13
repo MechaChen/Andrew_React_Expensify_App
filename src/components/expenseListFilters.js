@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 const ExpenseListFilters = props => (
   <div>
-    <input type="text" value={props.text} />
+    <input type="text" defaultValue={props.text} />
   </div>
 );
 
