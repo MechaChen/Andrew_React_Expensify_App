@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 const ExpenseList = props => (
   <div>
     <h1>Expense List</h1>
-    <p>{props.name}</p>
+    <p>{props.expenses.length}</p>
   </div>
 );
 
@@ -31,7 +31,7 @@ const ExpenseList = props => (
 //  2. Inner Component
 
 const ConnectedExpenseList = connect(state => ({
-  name: "Benson"
+  expenses: state.expenses
 }))(ExpenseList);
 
 export default ConnectedExpenseList;
