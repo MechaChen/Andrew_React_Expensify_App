@@ -19,7 +19,9 @@ const withAdminWarning = WrappedComponent => {
   return props => (
     <div>
       <p>This is private info. Please don't share!</p>
-      <WrappedComponent />
+      {/* use the Spread Operator to spread out props */}
+      {/* {} in here is using Javascript, not an object */}
+      <WrappedComponent {...props} />
     </div>
   );
 };
