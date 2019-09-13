@@ -7,12 +7,11 @@ export default (expenses, { text, sortBy, startDate, endDate }) => {
       const endDateMatch =
         typeof endDate !== "number" || expense.createdAt <= endDate;
 
-      // figure out if expenses.description has the text variable string inside of it
-      // includes
-      // convert both strings to lower case
+      const textRegex = new RegExp(text, "i");
       const textMatch =
         typeof text !== "string" ||
-        expense.description.toLowerCase().includes(text.toLowerCase());
+        // expense.description.toLowerCase().includes(text.toLowerCase());
+        textRegex.test(expense.description);
 
       return startDateMatch && endDateMatch && textMatch;
     })
@@ -22,8 +21,5 @@ export default (expenses, { text, sortBy, startDate, endDate }) => {
       } else if (sortBy === "amount") {
         return a.amount < b.amount ? 1 : -1;
       }
-
-      // sortBy -> amount
-      // put the ones with a greater amount first
     });
 };
