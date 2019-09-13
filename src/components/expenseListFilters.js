@@ -11,6 +11,10 @@ const ExpenseListFilters = props => (
         props.dispatch(setTextFilter(e.target.value));
       }}
     />
+    <selection>
+      <option value="date">Date</option>
+      <option value="amount">Amount</option>
+    </selection>
   </div>
 );
 
