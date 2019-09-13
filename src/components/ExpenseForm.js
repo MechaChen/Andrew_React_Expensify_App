@@ -20,18 +20,18 @@ export default class ExpenseForm extends React.Component {
   };
   onAmountChange = e => {
     const amount = e.target.value;
-    if (/^\d*(\.\d{0,2})?$/.test(amount)) {
+    if (!amount || /^\d+(\.\d{0,2})?$/.test(amount)) {
       this.setState(() => ({ amount }));
     }
   };
   onNoteChange = e => {
-    // const note = e.target.value;
-    // this.setState(() => ({ note }));
     e.persist();
     this.setState(() => ({ note: e.target.value }));
   };
   onDateChange = createdAt => {
-    this.setState(() => ({ createdAt }));
+    if (createdAt) {
+      this.setState(() => ({ createdAt }));
+    }
   };
   onFocusChange = ({ focused }) => {
     this.setState(() => ({ calendarFocused: focused }));
