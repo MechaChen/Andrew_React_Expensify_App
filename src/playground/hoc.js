@@ -18,7 +18,7 @@ const Info = props => (
 const withAdminWarning = WrappedComponent => {
   return props => (
     <div>
-      <p>This is private info. Please don't share!</p>
+      {props.isAdmin && <p>This is private info. Please don't share!</p>}
       {/* use the Spread Operator to spread out props */}
       {/* {} in here is using Javascript, not an object */}
       <WrappedComponent {...props} />
@@ -29,6 +29,6 @@ const withAdminWarning = WrappedComponent => {
 const AdminInfo = withAdminWarning(Info);
 
 ReactDOM.render(
-  <AdminInfo info="There are the details" />,
+  <AdminInfo isAdmin={false} info="There are the details" />,
   document.getElementById("app")
 );
