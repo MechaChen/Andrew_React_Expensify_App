@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/playground/hoc.js",
+  entry: "./src/app.js",
   output: {
     path: path.join(__dirname, "public"),
     filename: "bundle.js"
@@ -22,7 +22,6 @@ module.exports = {
   devtool: "cheap-module-eval-source-map",
   devServer: {
     contentBase: path.join(__dirname, "public"),
-    // tell browser we will handle routing through out client side code
     historyApiFallback: true
   }
 };
