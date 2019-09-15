@@ -20,3 +20,17 @@ test("should setup edit expense aciton object", () => {
     updates: { note: "New note value" }
   });
 });
+
+test("should setup add expense action object with provided value", () => {
+  const expenseData = {
+    description: "Rent",
+    note: "",
+    amount: 1700,
+    createdAt: 0
+  };
+  const action = addExpense(expenseData);
+  expect(action).toEqual({
+    type: "ADD_EXPENSE",
+    expense: { ...expenseData, id: expect.any(String) }
+  });
+});
