@@ -1,4 +1,4 @@
-const add = (a, b) => a + b;
+const add = (a, b) => a + b + 1;
 
 test("should add two number.", () => {
   const result = add(3, 4);
