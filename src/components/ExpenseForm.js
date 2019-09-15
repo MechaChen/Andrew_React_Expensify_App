@@ -95,8 +95,10 @@ export default class ExpenseForm extends React.Component {
 }
 
 ExpenseForm.defaultProps = {
-  description: "",
-  amount: "",
-  note: "",
-  createdAt: moment()
+  expense: {
+    description: "",
+    amount: "",
+    note: "",
+    createdAt: moment()
+  }
 };
