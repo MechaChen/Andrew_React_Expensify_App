@@ -1,12 +1,21 @@
 import React from "react";
+import { connect } from "react-redux";
+import ExpenseForm from "./ExpenseForm";
 
 const EditExpensePage = props => {
   console.log(props);
-  // Object{match: Object, location: Object, history: Object, ...}
-  //   history : can let us manipulate history(where the user is), ex: redirect
-  //   location : contain the infomation of current URL
-  //   match :
-  return <div>Editing the expense with id of {props.match.params.id}</div>;
+  return (
+    <div>
+      <ExpenseForm
+        expense={props.expense}
+        onSubmit={expense => console.log(expense)}
+      />
+    </div>
+  );
 };
 
-export default EditExpensePage;
+const mapStateToProps = (state, props) => ({
+  expense: state.expenses.find(expense => expense.id === props.match.params.id)
+});
+
+export default connect(mapStateToProps)(EditExpensePage);

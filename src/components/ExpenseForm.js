@@ -8,10 +8,10 @@ import "react-dates/lib/css/_datepicker.css";
 
 export default class ExpenseForm extends React.Component {
   state = {
-    description: "",
-    amount: "",
-    note: "",
-    createdAt: moment(),
+    description: this.props.expense.description,
+    note: this.props.expense.note,
+    amount: (this.props.expense.amount / 100).toString(),
+    createdAt: moment(this.props.expense.createdAt),
     calendarFocused: false,
     error: null
   };
@@ -93,3 +93,10 @@ export default class ExpenseForm extends React.Component {
     );
   }
 }
+
+ExpenseForm.defaultProps = {
+  description: "",
+  amount: "",
+  note: "",
+  createdAt: moment()
+};
