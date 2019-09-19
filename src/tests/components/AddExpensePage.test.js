@@ -3,21 +3,21 @@ import { shallow } from 'enzyme';
 import { AddExpensePage } from '../../components/AddExpensePage';
 import expenses from '../fixtures/expenses';
 
-test('should render AddExpesePage', () => {
-  const onSubmit = jest.fn();
-  const history = { push: jest.fn() };
-  const wrapper = shallow(
+let onSubmit, history, wrapper;
+
+beforeEach(() => {
+  onSubmit = jest.fn();
+  history = { push: jest.fn() };
+  wrapper = shallow(
     <AddExpensePage onSubmit={onSubmit} history={history} />
   );
+});
+
+test('should render AddExpesePage', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
 test('should handle onSubmit', () => {
-  const onSubmit = jest.fn();
-  const history = { push: jest.fn() };
-  const wrapper = shallow(
-    <AddExpensePage onSubmit={onSubmit} history={history} />
-  );
   wrapper
     .find('ExpenseForm')
     .simulate('submit', expenses[1]);
