@@ -13,12 +13,6 @@ import "./styles/style.scss";
 
 const store = configureStore();
 
-store.subscribe(() => {
-  const { expenses } = store.getState();
-  console.log(expenses);
-  console.log(getExpensesTotal(expenses));
-});
-
 const jsx = (
   <Provider store={store}>
     <AppRouter />
