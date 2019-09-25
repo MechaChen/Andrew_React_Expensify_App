@@ -15,25 +15,34 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-database.ref().set({
-  name: 'Benson Chen',
-  age: 25,
-  isSingle: true,
-  location: {
-    city: 'Taichung',
-    country: 'Taiwan',
-  }
-});
+database
+  .ref()
+  .set({
+    name: 'Benson Chen',
+    age: 25,
+    isSingle: true,
+    location: {
+      city: 'Taichung',
+      country: 'Taiwan',
+    }
+  })
+  .then(() => {
+    console.log('Data is saved');
+  })
+  .catch((e) => {
+    console.log('This faild.', e);
+  });
 
-// database.ref().set('this is my data');
 
-database.ref('age').set(27);
-database.ref('location/city').set('Taipei');
-
-// attributes
-//  height
-//  weight
-database.ref('attributes').set({
-  height: 175,
-  weight: 75,
-});
+database
+  .ref('age')
+  .set(27);
+database
+  .ref('location/city')
+  .set('Taipei');
+database
+  .ref('attributes')
+  .set({
+    height: 175,
+    weight: 75,
+  });
