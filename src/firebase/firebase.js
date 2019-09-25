@@ -29,3 +29,11 @@ database.ref().set({
 
 database.ref('age').set(27);
 database.ref('location/city').set('Taipei');
+
+// attributes
+//  height
+//  weight
+database.ref('attributes').set({
+  height: 175,
+  weight: 75,
+});
