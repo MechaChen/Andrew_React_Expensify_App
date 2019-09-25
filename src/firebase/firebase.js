@@ -15,6 +15,8 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
+// in rules, set ".read" and ".write" to false
+
 database
   .ref()
   .set({
