@@ -36,15 +36,27 @@ database
   });
 
 
-database
-  .ref('age')
-  .set(27);
-database
-  .ref('location/city')
-  .set('Taipei');
+// database
+//   .ref('age')
+//   .set(27);
+// database
+//   .ref('location/city')
+//   .set('Taipei');
+
+// setup then and catch
+// make sure catch actually works
+// switch rules to be open
+// make sure that then runs
+
 database
   .ref('attributes')
   .set({
     height: 175,
     weight: 75,
+  })
+  .then(() => {
+    console.log('add attributes successfully!');
+  })
+  .catch((error) => {
+    console.log(error);
   });
