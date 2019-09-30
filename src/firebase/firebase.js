@@ -16,15 +16,34 @@ firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
 database
-  .ref('location')
-  .once('value')
-  .then((snapshot) => {
-    const value = snapshot.val();
-    console.log(value);
-  })
-  .catch((e) => {
-    console.log('Error fetching data', e);
+  .ref()
+  .on('value', (snapshot) => {
+    console.log(snapshot.val())
   });
+
+setTimeout(() => {
+  database.ref('age').set(28);
+}, 3500);
+
+setTimeout(() => {
+  database.ref('age').set(29);
+  database.ref().off();
+}, 7000);
+
+setTimeout(() => {
+  database.ref('age').set(30);
+}, 10500);
+
+// database
+//   .ref('location')
+//   .once('value')
+//   .then((snapshot) => {
+//     const value = snapshot.val();
+//     console.log(value);
+//   })
+//   .catch((e) => {
+//     console.log('Error fetching data', e);
+//   });
 
 // database
 //   .ref()
