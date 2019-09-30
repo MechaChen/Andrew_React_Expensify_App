@@ -15,132 +15,18 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-// Setup "expenses" with three items (description, note, amount, createdAt)
 database
   .ref('expenses')
-  .push({
-    description: 'Rent',
-    note: '',
-    amount: 1095,
-    createdAt: 0,
+  .once('value')
+  .then((snapshot) => {
+    const expenses = [];
+
+    snapshot.forEach((childSnapshot) => {
+      expenses.push({
+        id: childSnapshot.key,
+        ...childSnapshot.val(),
+      });
+    });
+
+    console.log(expenses);
   });
-
-database
-  .ref('expenses')
-  .push({
-    description: 'Water bill',
-    note: '',
-    amount: 300,
-    createdAt: 100,
-  });
-
-database
-  .ref('expenses')
-  .push({
-    description: 'Gas bill',
-    note: '',
-    amount: 500,
-    createdAt: -100,
-  });
-
-// database.ref('notes/-Lq1GXFE1uNWy8zGolq6').remove();
-
-// database.ref('notes').push({
-//   title: 'To Do',
-//   body: 'Go for a run',
-// });
-
-// database.ref('notes').push({
-//   title: 'Course Topics',
-//   body: 'React Native, Angular, Python',
-// });
-
-// database.ref().set({
-//   name: 'Andrew Mead',
-//   job: {
-//     title: 'Software Developer',
-//     company: 'Amazon',
-//   },
-// });
-
-// database.ref().on('value', (snapshot) => {
-//   console.log(snapshot.val());
-// });
-
-// database.ref().update({
-//   'job/title': 'Frontend Developer',
-// });
-
-// const onValueChange = database.ref().on('value', 
-//      (snapshot) => {
-//       console.log(snapshot.val())
-//     }, (e) => {
-//       console.log('Fetching Error', e);
-//     });
-
-// setTimeout(() => {
-//   database.ref('age').set(28);
-// }, 3500);
-
-// setTimeout(() => {
-//   database.ref().off('value', onValueChange);
-// }, 7000);
-
-// setTimeout(() => {
-//   database.ref('age').set(30);
-// }, 10500);
-
-// database
-//   .ref('location')
-//   .once('value')
-//   .then((snapshot) => {
-//     const value = snapshot.val();
-//     console.log(value);
-//   })
-//   .catch((e) => {
-//     console.log('Error fetching data', e);
-//   });
-
-// database
-//   .ref()
-//   .set({
-//     name: 'Rebecca Wang',
-//     age: 17,
-//     stressLevel: 6,
-//     job: {
-//       title: 'Frontend Developer',
-//       company: 'FarEast',
-
-//     },
-//     location: {
-//       city: 'Taipei',
-//       country: 'Taiwan',
-//     }
-//   })
-//   .then(() => {
-//     console.log('Data is saved');
-//   })
-//   .catch((e) => {
-//     console.log('This faild.', e);
-//   });
-
-// // Change the stressLevel to a 9
-// // Change job.company to Amazon
-// // Change location.city to Seattle
-// database
-//   .ref()
-//   .update({
-//     stressLevel: 9,
-//     'job/company': 'Amazon',
-//     'location/city': 'Seattle',
-//   });
-
-// database
-//   .ref()
-//   .remove()
-//   .then(() => {
-//     console.log('Data was removed');
-//   })
-//   .catch((e) => {
-//     console.log('Did not remove data', e)
-//   });
