@@ -21,10 +21,15 @@ database
   .ref()
   .set({
     name: 'Rebecca Wang',
-    age: 25,
-    job: 'Frontend Developer',
+    age: 17,
+    stressLevel: 6,
+    job: {
+      title: 'Frontend Developer',
+      company: 'FarEast',
+
+    },
     location: {
-      city: 'Taichung',
+      city: 'Taipei',
       country: 'Taiwan',
     }
   })
@@ -35,11 +40,15 @@ database
     console.log('This faild.', e);
   });
 
+// Change the stressLevel to a 9
+// Change job.company to Amazon
+// Change location.city to Seattle
 database
   .ref()
   .update({
-    age: 29,
-    'location/city': 'Taipei',
+    stressLevel: 9,
+    'job/company': 'Amazon',
+    'location/city': 'Seattle',
   });
 
 // database
