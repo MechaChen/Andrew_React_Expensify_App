@@ -22,6 +22,13 @@ database
     console.log(snapshot.key, snapshot.val())
   });
 
+// child_changed
+database
+  .ref('expenses')
+  .on('child_changed', (snapshot) => {
+    console.log(snapshot.key, snapshot.val());
+  });
+
 // database
 //   .ref('expenses')
 //   .on('value', (snapshot) => {
