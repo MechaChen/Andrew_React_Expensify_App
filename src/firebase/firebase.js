@@ -15,21 +15,33 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-database.ref().set({
-  name: 'Andrew Mead',
-  job: {
-    title: 'Software Developer',
-    company: 'Amazon',
-  },
-});
+database.ref('notes/-Lq1GXFE1uNWy8zGolq6').remove();
 
-database.ref().on('value', (snapshot) => {
-  console.log(snapshot.val());
-});
+// database.ref('notes').push({
+//   title: 'To Do',
+//   body: 'Go for a run',
+// });
 
-database.ref().update({
-  'job/title': 'Frontend Developer',
-});
+// database.ref('notes').push({
+//   title: 'Course Topics',
+//   body: 'React Native, Angular, Python',
+// });
+
+// database.ref().set({
+//   name: 'Andrew Mead',
+//   job: {
+//     title: 'Software Developer',
+//     company: 'Amazon',
+//   },
+// });
+
+// database.ref().on('value', (snapshot) => {
+//   console.log(snapshot.val());
+// });
+
+// database.ref().update({
+//   'job/title': 'Frontend Developer',
+// });
 
 // const onValueChange = database.ref().on('value', 
 //      (snapshot) => {
