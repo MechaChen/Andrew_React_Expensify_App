@@ -36,8 +36,13 @@ database
   });
 
 database
-  .ref('isSingle')
-  .set(null);
+  .ref()
+  .update({
+    name: 'Rebecca',
+    age: 29,
+    job: 'Frontend Developer',
+    isSingle: null,
+  });
 
 // database
 //   .ref()
