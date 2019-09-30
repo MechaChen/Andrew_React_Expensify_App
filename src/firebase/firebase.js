@@ -20,9 +20,9 @@ const database = firebase.database();
 database
   .ref()
   .set({
-    name: 'Benson Chen',
+    name: 'Rebecca Wang',
     age: 25,
-    isSingle: true,
+    job: 'Frontend Developer',
     location: {
       city: 'Taichung',
       country: 'Taiwan',
@@ -38,10 +38,8 @@ database
 database
   .ref()
   .update({
-    name: 'Rebecca',
     age: 29,
-    job: 'Frontend Developer',
-    isSingle: null,
+    'location/city': 'Taipei',
   });
 
 // database
