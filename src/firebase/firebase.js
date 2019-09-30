@@ -15,24 +15,40 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-const onValueChange = database.ref().on('value', 
-     (snapshot) => {
-      console.log(snapshot.val())
-    }, (e) => {
-      console.log('Fetching Error', e);
-    });
+database.ref().set({
+  name: 'Andrew Mead',
+  job: {
+    title: 'Software Developer',
+    company: 'Amazon',
+  },
+});
 
-setTimeout(() => {
-  database.ref('age').set(28);
-}, 3500);
+database.ref().on('value', (snapshot) => {
+  console.log(snapshot.val());
+});
 
-setTimeout(() => {
-  database.ref().off('value', onValueChange);
-}, 7000);
+database.ref().update({
+  'job/title': 'Frontend Developer',
+});
 
-setTimeout(() => {
-  database.ref('age').set(30);
-}, 10500);
+// const onValueChange = database.ref().on('value', 
+//      (snapshot) => {
+//       console.log(snapshot.val())
+//     }, (e) => {
+//       console.log('Fetching Error', e);
+//     });
+
+// setTimeout(() => {
+//   database.ref('age').set(28);
+// }, 3500);
+
+// setTimeout(() => {
+//   database.ref().off('value', onValueChange);
+// }, 7000);
+
+// setTimeout(() => {
+//   database.ref('age').set(30);
+// }, 10500);
 
 // database
 //   .ref('location')
