@@ -15,41 +15,50 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-// in rules, set ".read" and ".write" to false
-
 database
   .ref()
-  .set({
-    name: 'Rebecca Wang',
-    age: 17,
-    stressLevel: 6,
-    job: {
-      title: 'Frontend Developer',
-      company: 'FarEast',
-
-    },
-    location: {
-      city: 'Taipei',
-      country: 'Taiwan',
-    }
-  })
-  .then(() => {
-    console.log('Data is saved');
+  .once('value')
+  .then((snapshot) => {
+    const value = snapshot.val();
+    console.log(value);
   })
   .catch((e) => {
-    console.log('This faild.', e);
+    console.log('Error fetching data', e);
   });
 
-// Change the stressLevel to a 9
-// Change job.company to Amazon
-// Change location.city to Seattle
-database
-  .ref()
-  .update({
-    stressLevel: 9,
-    'job/company': 'Amazon',
-    'location/city': 'Seattle',
-  });
+// database
+//   .ref()
+//   .set({
+//     name: 'Rebecca Wang',
+//     age: 17,
+//     stressLevel: 6,
+//     job: {
+//       title: 'Frontend Developer',
+//       company: 'FarEast',
+
+//     },
+//     location: {
+//       city: 'Taipei',
+//       country: 'Taiwan',
+//     }
+//   })
+//   .then(() => {
+//     console.log('Data is saved');
+//   })
+//   .catch((e) => {
+//     console.log('This faild.', e);
+//   });
+
+// // Change the stressLevel to a 9
+// // Change job.company to Amazon
+// // Change location.city to Seattle
+// database
+//   .ref()
+//   .update({
+//     stressLevel: 9,
+//     'job/company': 'Amazon',
+//     'location/city': 'Seattle',
+//   });
 
 // database
 //   .ref()
