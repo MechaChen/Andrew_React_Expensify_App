@@ -15,7 +15,35 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-database.ref('notes/-Lq1GXFE1uNWy8zGolq6').remove();
+// Setup "expenses" with three items (description, note, amount, createdAt)
+database
+  .ref('expenses')
+  .push({
+    description: 'Rent',
+    note: '',
+    amount: 1095,
+    createdAt: 0,
+  });
+
+database
+  .ref('expenses')
+  .push({
+    description: 'Water bill',
+    note: '',
+    amount: 300,
+    createdAt: 100,
+  });
+
+database
+  .ref('expenses')
+  .push({
+    description: 'Gas bill',
+    note: '',
+    amount: 500,
+    createdAt: -100,
+  });
+
+// database.ref('notes/-Lq1GXFE1uNWy8zGolq6').remove();
 
 // database.ref('notes').push({
 //   title: 'To Do',
