@@ -15,19 +15,19 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
 
-database
-  .ref()
-  .on('value', (snapshot) => {
-    console.log(snapshot.val())
-  });
+const onValueChange = database.ref().on('value', 
+     (snapshot) => {
+      console.log(snapshot.val())
+    }, (e) => {
+      console.log('Fetching Error', e);
+    });
 
 setTimeout(() => {
   database.ref('age').set(28);
 }, 3500);
 
 setTimeout(() => {
-  database.ref('age').set(29);
-  database.ref().off();
+  database.ref().off('value', onValueChange);
 }, 7000);
 
 setTimeout(() => {
